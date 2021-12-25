@@ -1,0 +1,8 @@
+SELECT b.N AS N,
+CASE
+    WHEN b.P IS NULL THEN 'Root'
+    WHEN (SELECT COUNT(*) FROM BST t WHERE t.P=b.N) = 0 THEN 'Leaf'
+    ELSE 'Inner'
+END AS type
+FROM BST b
+ORDER BY 1
